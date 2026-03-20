@@ -1,0 +1,44 @@
+body {
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.container {
+    width: 420px;
+    margin: 80px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+}
+
+.form button {
+    width: 100%;
+    padding: 10px;
+    background: #ff416c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#taskList li {
+    list-style: none;
+    background: #eee;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.task-actions button {
+    margin-top: 5px;
+    margin-right: 5px;
+}

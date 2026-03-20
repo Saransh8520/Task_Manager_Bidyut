@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Task Manager</h1>
+
+    <form action="/add" method="post" class="form">
+        <input type="text" name="title" placeholder="Enter Title" required>
+        <input type="text" name="description" placeholder="Enter Description">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <h2>Your Tasks</h2>
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+function loadTasks() {
+    fetch("/tasks")
+    .then(res => res.json())
+    .then(data => {
+        let html = "";
+
+        data.forEach(t => {
+            html += `<li>
+                <div class="task-title">${t.title}</div>
+                <div class="task-desc">${t.description}</div>
+                <div class="task-status">${t.status}</div>
+                <div class="task-actions">
+                    <button class="complete-btn" onclick="complete(${t.id})">✔</button>
+                    <button class="delete-btn" onclick="del(${t.id})">✖</button>
+                </div>
+            </li>`;
+        });
+
+        document.getElementById("taskList").innerHTML = html;
+    });
+}
+
+function del(id) {
+    fetch("/delete?id=" + id).then(() => loadTasks());
+}
+
+function complete(id) {
+    fetch("/complete?id=" + id).then(() => loadTasks());
+}
+
+loadTasks();
+</script>
+
+</body>
+</html>
